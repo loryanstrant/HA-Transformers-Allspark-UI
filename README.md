@@ -6,13 +6,9 @@ Transformers Allspark UI is a HACS-ready Home Assistant custom integration that 
 - 2 Fonts (G1 & Movie)
 - 8 Theme styles
 
-It is designed as an **integration-first** package under `custom_components/transformers_allspark_ui/`, so users can install one thing and get cards, themes, and fonts working together.
+It is designed as unified integration package, so that you can simply install one thing and get cards, themes, and fonts working together.
 
-I previously had two separate custom components to do this job, and still required some manual work for the fonts.
-
-https://github.com/loryanstrant/ha-transformers-theme
-
-https://github.com/loryanstrant/ha-transformers-cards
+I previously had a separate custom components for the [theme](https://github.com/loryanstrant/ha-transformers-theme) and the [cards](https://github.com/loryanstrant/ha-transformers-cards) to do this job, and they still required some manual work for the fonts.
 
 This supercedes both of them.
 
@@ -70,8 +66,10 @@ The bundled stylesheet provides shared font-family names so fonts can also be re
 
 #### Silver theme (G1 font), but showing a card using the movie font override
 <img width="1092" height="598" alt="image" src="https://github.com/user-attachments/assets/7f0580b4-6494-42eb-8d54-997999fe4e72" />
+<br><br>
 
-
+More theme examples can be found in on the [theme examples](THEME-EXAMPLES.md) page.
+<br><br>
 
 ## Included cards
 
@@ -93,7 +91,10 @@ All cards are registered for the card picker and support preview tiles in the Co
 <img width="1607" height="740" alt="image" src="https://github.com/user-attachments/assets/2ea247f4-35f6-4eb9-a600-dfd889a1a18f" />
 <img width="1605" height="846" alt="image" src="https://github.com/user-attachments/assets/ee6ef213-60c6-442a-a473-42b0e80d98b0" />
 <img width="495" height="397" alt="image" src="https://github.com/user-attachments/assets/9a7377d1-fc11-43f8-87ac-15918ae22ea2" />
+<br><br>
 
+More card examples can be found in on the [card examples](CARD-EXAMPLES.md) page.
+<br><br>
 
 # Development Approach
 <img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/9fcad42c-9f94-4684-ac45-d6ca029d9ec7" />
