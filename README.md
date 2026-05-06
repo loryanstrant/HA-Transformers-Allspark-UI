@@ -45,11 +45,11 @@ This supercedes both of them.
 
 ## Font behavior
 
-Supported font styles:
+Supported font styles on the included cards:
 
 - `theme` (default): follows active theme/global integration default
-- `g1`: forces `Transformers G1`
-- `movie`: forces `Transformers Movie`
+- `g1` forces `Transformers G1`
+- `movie` forces `Transformers Movie`
 
 The bundled stylesheet provides shared font-family names so fonts can also be referenced by native cards or other custom cards.
 
