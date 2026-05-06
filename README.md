@@ -2,34 +2,33 @@
 
 Transformers Allspark UI is a HACS-ready Home Assistant custom integration that bundles:
 
-- 11 Transformers-themed Lovelace custom cards
-- 8 Transformers themes (Dark/Light/Silver/Dirty Metal × G1/Movie)
-- shared font assets and stylesheet (`Transformers G1`, `Transformers Movie`)
-- Home Assistant brand assets for the integration
+- 11 G1-themed custom cards
+- 2 Fonts (G1 & Movie)
+- 8 Theme styles
 
-It is designed as an **integration-first** package under `custom_components/transformers_allspark_ui/`, so users can install one thing and get cards, themes, and assets working together.
+It is designed as an **integration-first** package under `custom_components/transformers_allspark_ui/`, so users can install one thing and get cards, themes, and fonts working together.
+
+I previously had two separate custom components to do this job, and still required some manual work for the fonts.
+
+https://github.com/loryanstrant/ha-transformers-theme
+
+https://github.com/loryanstrant/ha-transformers-cards
+
+This supercedes both of them.
+
 
 ## Features
 
-- Automatic static asset hosting under:
-	- `/transformers_allspark_ui_static/transformers-cards.js`
-	- `/transformers_allspark_ui_static/transformers-fonts.css`
-- Automatic Lovelace resource registration/sync (storage mode)
-- Legacy resource migration from:
-	- `/transformers_ui_static/transformers-cards.js?...`
-- Automatic theme install/update to Home Assistant `themes/` directory
-- Automatic `frontend.reload_themes` call after theme updates
-- Config flow + options flow with defaults for:
-	- resource management
-	- theme management
-	- default font style (`theme`, `g1`, `movie`)
-- Card picker discoverability via `window.customCards`
-- Card picker previews enabled (`preview: true`) with dynamic stub configs
+- Global font setting and individual card override
+- Supports native cards
+- Allows entity icons to be used
+- Reflects entity state
+
 
 ## Requirements
 
 - Home Assistant `2026.3.0` or newer
-- Lovelace in storage mode for automatic resource management
+- [card-mod custom component](https://github.com/thomasloven/lovelace-card-mod)
 - Themes enabled in your Home Assistant configuration:
 
 `frontend: themes: !include_dir_merge_named themes`
@@ -41,29 +40,8 @@ It is designed as an **integration-first** package under `custom_components/tran
 3. Restart Home Assistant.
 4. Go to **Settings → Devices & Services → Add Integration**.
 5. Add **Transformers Allspark UI** and complete the config flow.
+6. Restart Home Assistant again.
 
-On setup, the integration can automatically:
-
-- expose bundled frontend assets
-- create/update Lovelace resources
-- copy/update the theme package into your active `themes/` directory
-- reload themes
-
-## Included cards
-
-- `transformers-status-card`
-- `transformers-sensor-card`
-- `transformers-button-card`
-- `transformers-text-card`
-- `transformers-gauge-card`
-- `transformers-clock-card`
-- `transformers-glance-card`
-- `transformers-light-card`
-- `transformers-picture-card`
-- `transformers-weather-card`
-- `transformers-alarm-card`
-
-All cards are registered for the card picker and support preview tiles in the Community cards list.
 
 ## Font behavior
 
@@ -86,43 +64,38 @@ The bundled stylesheet provides shared font-family names so fonts can also be re
 - `Transformers Dirty Metal (G1)`
 - `Transformers Dirty Metal (Movie)`
 
-## Migration notes
+### Theme Examples
+#### Dark theme (movie font), but showing a card using the G1 font override
+<img width="1261" height="606" alt="image" src="https://github.com/user-attachments/assets/183df6de-a53a-4f1b-a3c1-381e26917454" />
 
-This integration supersedes older split card/theme setups.
+#### Silver theme (G1 font), but showing a card using the movie font override
+<img width="1092" height="598" alt="image" src="https://github.com/user-attachments/assets/7f0580b4-6494-42eb-8d54-997999fe4e72" />
 
-When resource management is enabled, it will migrate stale legacy card resources, including paths such as:
 
-- `/transformers_ui_static/transformers-cards.js?v=0.1.7&font=g1`
 
-to the canonical integration static path:
+## Included cards
 
-- `/transformers_allspark_ui_static/transformers-cards.js?v=<integration-version>`
+- `transformers-status-card`
+- `transformers-sensor-card`
+- `transformers-button-card`
+- `transformers-text-card`
+- `transformers-gauge-card`
+- `transformers-clock-card`
+- `transformers-glance-card`
+- `transformers-light-card`
+- `transformers-picture-card`
+- `transformers-weather-card`
+- `transformers-alarm-card`
 
-and keep the resource entry aligned to the current installed version.
+All cards are registered for the card picker and support preview tiles in the Community cards list.
 
-## Development
+### Card Examples
+<img width="1607" height="740" alt="image" src="https://github.com/user-attachments/assets/2ea247f4-35f6-4eb9-a600-dfd889a1a18f" />
+<img width="1605" height="846" alt="image" src="https://github.com/user-attachments/assets/ee6ef213-60c6-442a-a473-42b0e80d98b0" />
+<img width="495" height="397" alt="image" src="https://github.com/user-attachments/assets/9a7377d1-fc11-43f8-87ac-15918ae22ea2" />
 
-Build frontend assets:
 
-- `npm run build`
+# Development Approach
+<img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/9fcad42c-9f94-4684-ac45-d6ca029d9ec7" />
 
-After deployment changes:
 
-1. restart Home Assistant
-2. verify resources in `.storage/lovelace_resources`
-3. verify integration entry in `.storage/core.config_entries`
-4. check logs for tracebacks
-
-## Repository layout
-
-- `custom_components/transformers_allspark_ui/` — integration package
-- `custom_components/transformers_allspark_ui/www/` — bundled JS/CSS/fonts served by HA
-- `custom_components/transformers_allspark_ui/themes/` — source theme package
-- `custom_components/transformers_allspark_ui/brand/` — integration brand assets
-- `src/` — card source files
-
-## Status
-
-Current version: `0.1.0`
-
-Core integration functionality, resource sync/migration, theme installation, and card picker previews are implemented and validated in local Home Assistant testing.
