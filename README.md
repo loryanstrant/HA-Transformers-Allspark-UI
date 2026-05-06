@@ -77,6 +77,8 @@ More theme examples can be found in on the [theme examples](THEME-EXAMPLES.md) p
 
 ## Included cards
 
+All cards are G1 styled, regardless of theme choice. You can override the font for each card to use the movie or theme font, but the overall appearance of the cards is G1.
+
 - `transformers-status-card`
 - `transformers-sensor-card`
 - `transformers-button-card`
