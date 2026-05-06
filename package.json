@@ -1,0 +1,39 @@
+{
+  "name": "ha-transformers-allspark-ui",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A HACS-ready Home Assistant integration that combines Transformers themes, cards, fonts, and brand assets.",
+  "main": "custom_components/transformers_allspark_ui/www/transformers-cards.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "lint": "eslint src/**/*.js"
+  },
+  "keywords": [
+    "home-assistant",
+    "custom-component",
+    "custom-card",
+    "theme",
+    "transformers",
+    "hacs"
+  ],
+  "author": "Loryan Strant",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loryanstrant/ha-transformers-allspark-ui"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "eslint": "^8.52.0",
+    "rollup": "^4.1.4"
+  },
+  "dependencies": {
+    "lit": "^3.0.0"
+  }
+}

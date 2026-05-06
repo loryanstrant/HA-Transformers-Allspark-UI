@@ -1,0 +1,506 @@
+################################################################################
+# Transformers Allspark UI themes
+# Requires card-mod for the deep typography and card styling overrides.
+################################################################################
+
+Transformers Dark (G1):
+  primary-color: '#0d47a1'
+  accent-color: '#ff1744'
+  primary-background-color: '#0a0e14'
+  secondary-background-color: '#151b24'
+  card-background-color: '#151b24'
+  paper-card-background-color: '#151b24'
+  primary-text-color: '#e0e6ed'
+  secondary-text-color: '#b0c4de'
+  text-primary-color: '#ffffff'
+  disabled-text-color: '#546e7a'
+  app-header-background-color: '#0a0e14'
+  app-header-text-color: '#e0e6ed'
+  sidebar-background-color: '#0a0e14'
+  sidebar-text-color: '#e0e6ed'
+  sidebar-icon-color: '#64b5f6'
+  sidebar-selected-background-color: '#1e2936'
+  sidebar-selected-icon-color: '#2196f3'
+  sidebar-selected-text-color: '#2196f3'
+  state-active-color: '#2196f3'
+  state-inactive-color: '#546e7a'
+  state-icon-color: '#64b5f6'
+  state-icon-active-color: '#2196f3'
+  paper-item-icon-color: '#64b5f6'
+  paper-item-icon-active-color: '#2196f3'
+  divider-color: '#263238'
+  ha-card-border-color: '#1e3a5f'
+  transformers-card-font-family: "'Transformers G1', 'Arial Black', sans-serif"
+  transformers-header-font-family: "'Transformers G1', 'Arial Black', sans-serif"
+  card-mod-theme: 'Transformers Dark (G1)'
+  card-mod-view-yaml: |
+    .: |
+      hui-view {
+        background-color: var(--primary-background-color) !important;
+      }
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        border: 2px solid var(--ha-card-border-color) !important;
+        border-left: 4px solid var(--primary-color) !important;
+        background: linear-gradient(135deg, var(--card-background-color) 0%, var(--secondary-background-color) 100%) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28), 0 0 18px rgba(33, 150, 243, 0.15) !important;
+        color: var(--primary-text-color) !important;
+      }
+      ha-card, ha-card * {
+        font-family: var(--transformers-card-font-family) !important;
+      }
+      ha-card .card-header,
+      ha-card h1,
+      ha-card h2,
+      ha-card h3 {
+        font-family: var(--transformers-header-font-family) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.12em !important;
+        text-shadow: 0 0 10px rgba(33, 150, 243, 0.35) !important;
+      }
+      ha-card ha-icon,
+      ha-card ha-state-icon,
+      ha-card state-badge {
+        color: var(--paper-item-icon-color) !important;
+      }
+
+Transformers Dark (Movie):
+  primary-color: '#0d47a1'
+  accent-color: '#ff1744'
+  primary-background-color: '#0a0e14'
+  secondary-background-color: '#151b24'
+  card-background-color: '#151b24'
+  paper-card-background-color: '#151b24'
+  primary-text-color: '#e0e6ed'
+  secondary-text-color: '#b0c4de'
+  text-primary-color: '#ffffff'
+  disabled-text-color: '#546e7a'
+  app-header-background-color: '#0a0e14'
+  app-header-text-color: '#e0e6ed'
+  sidebar-background-color: '#0a0e14'
+  sidebar-text-color: '#e0e6ed'
+  sidebar-icon-color: '#64b5f6'
+  sidebar-selected-background-color: '#1e2936'
+  sidebar-selected-icon-color: '#2196f3'
+  sidebar-selected-text-color: '#2196f3'
+  state-active-color: '#2196f3'
+  state-inactive-color: '#546e7a'
+  state-icon-color: '#64b5f6'
+  state-icon-active-color: '#2196f3'
+  paper-item-icon-color: '#64b5f6'
+  paper-item-icon-active-color: '#2196f3'
+  divider-color: '#263238'
+  ha-card-border-color: '#1e3a5f'
+  transformers-card-font-family: "'Transformers Movie', 'Arial Black', sans-serif"
+  transformers-header-font-family: "'Transformers Movie', 'Arial Black', sans-serif"
+  card-mod-theme: 'Transformers Dark (Movie)'
+  card-mod-view-yaml: |
+    .: |
+      hui-view {
+        background-color: var(--primary-background-color) !important;
+      }
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        border: 2px solid var(--ha-card-border-color) !important;
+        border-left: 4px solid var(--primary-color) !important;
+        background: linear-gradient(135deg, var(--card-background-color) 0%, var(--secondary-background-color) 100%) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28), 0 0 18px rgba(33, 150, 243, 0.15) !important;
+        color: var(--primary-text-color) !important;
+      }
+      ha-card, ha-card * {
+        font-family: var(--transformers-card-font-family) !important;
+      }
+      ha-card .card-header,
+      ha-card h1,
+      ha-card h2,
+      ha-card h3 {
+        font-family: var(--transformers-header-font-family) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.12em !important;
+        text-shadow: 0 0 10px rgba(33, 150, 243, 0.35) !important;
+      }
+      ha-card ha-icon,
+      ha-card ha-state-icon,
+      ha-card state-badge {
+        color: var(--paper-item-icon-color) !important;
+      }
+
+Transformers Light (G1):
+  primary-color: '#1976d2'
+  accent-color: '#ff4081'
+  primary-background-color: '#f5f7fa'
+  secondary-background-color: '#ffffff'
+  card-background-color: '#ffffff'
+  paper-card-background-color: '#ffffff'
+  primary-text-color: '#263238'
+  secondary-text-color: '#546e7a'
+  text-primary-color: '#263238'
+  disabled-text-color: '#9e9e9e'
+  app-header-background-color: '#ffffff'
+  app-header-text-color: '#263238'
+  sidebar-background-color: '#f5f7fa'
+  sidebar-text-color: '#263238'
+  sidebar-icon-color: '#1976d2'
+  sidebar-selected-background-color: '#e3f2fd'
+  sidebar-selected-icon-color: '#0d47a1'
+  sidebar-selected-text-color: '#0d47a1'
+  state-active-color: '#1976d2'
+  state-inactive-color: '#9e9e9e'
+  state-icon-color: '#1976d2'
+  state-icon-active-color: '#0d47a1'
+  paper-item-icon-color: '#1976d2'
+  paper-item-icon-active-color: '#0d47a1'
+  divider-color: '#e0e0e0'
+  ha-card-border-color: '#bbdefb'
+  transformers-card-font-family: "'Transformers G1', 'Arial Black', sans-serif"
+  transformers-header-font-family: "'Transformers G1', 'Arial Black', sans-serif"
+  card-mod-theme: 'Transformers Light (G1)'
+  card-mod-view-yaml: |
+    .: |
+      hui-view {
+        background-color: var(--primary-background-color) !important;
+      }
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        border: 2px solid var(--ha-card-border-color) !important;
+        border-left: 4px solid var(--primary-color) !important;
+        background: linear-gradient(135deg, var(--card-background-color) 0%, var(--primary-background-color) 100%) !important;
+        box-shadow: 0 4px 12px rgba(25, 118, 210, 0.12), 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+        color: var(--primary-text-color) !important;
+      }
+      ha-card, ha-card * {
+        font-family: var(--transformers-card-font-family) !important;
+      }
+      ha-card .card-header,
+      ha-card h1,
+      ha-card h2,
+      ha-card h3 {
+        font-family: var(--transformers-header-font-family) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.12em !important;
+        text-shadow: 0 2px 6px rgba(25, 118, 210, 0.2) !important;
+      }
+      ha-card ha-icon,
+      ha-card ha-state-icon,
+      ha-card state-badge {
+        color: var(--paper-item-icon-color) !important;
+      }
+
+Transformers Light (Movie):
+  primary-color: '#1976d2'
+  accent-color: '#ff4081'
+  primary-background-color: '#f5f7fa'
+  secondary-background-color: '#ffffff'
+  card-background-color: '#ffffff'
+  paper-card-background-color: '#ffffff'
+  primary-text-color: '#263238'
+  secondary-text-color: '#546e7a'
+  text-primary-color: '#263238'
+  disabled-text-color: '#9e9e9e'
+  app-header-background-color: '#ffffff'
+  app-header-text-color: '#263238'
+  sidebar-background-color: '#f5f7fa'
+  sidebar-text-color: '#263238'
+  sidebar-icon-color: '#1976d2'
+  sidebar-selected-background-color: '#e3f2fd'
+  sidebar-selected-icon-color: '#0d47a1'
+  sidebar-selected-text-color: '#0d47a1'
+  state-active-color: '#1976d2'
+  state-inactive-color: '#9e9e9e'
+  state-icon-color: '#1976d2'
+  state-icon-active-color: '#0d47a1'
+  paper-item-icon-color: '#1976d2'
+  paper-item-icon-active-color: '#0d47a1'
+  divider-color: '#e0e0e0'
+  ha-card-border-color: '#bbdefb'
+  transformers-card-font-family: "'Transformers Movie', 'Arial Black', sans-serif"
+  transformers-header-font-family: "'Transformers Movie', 'Arial Black', sans-serif"
+  card-mod-theme: 'Transformers Light (Movie)'
+  card-mod-view-yaml: |
+    .: |
+      hui-view {
+        background-color: var(--primary-background-color) !important;
+      }
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        border: 2px solid var(--ha-card-border-color) !important;
+        border-left: 4px solid var(--primary-color) !important;
+        background: linear-gradient(135deg, var(--card-background-color) 0%, var(--primary-background-color) 100%) !important;
+        box-shadow: 0 4px 12px rgba(25, 118, 210, 0.12), 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+        color: var(--primary-text-color) !important;
+      }
+      ha-card, ha-card * {
+        font-family: var(--transformers-card-font-family) !important;
+      }
+      ha-card .card-header,
+      ha-card h1,
+      ha-card h2,
+      ha-card h3 {
+        font-family: var(--transformers-header-font-family) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.12em !important;
+        text-shadow: 0 2px 6px rgba(25, 118, 210, 0.2) !important;
+      }
+      ha-card ha-icon,
+      ha-card ha-state-icon,
+      ha-card state-badge {
+        color: var(--paper-item-icon-color) !important;
+      }
+
+Transformers Silver (G1):
+  primary-color: '#c0c0c0'
+  accent-color: '#e53935'
+  primary-background-color: '#1a1a1a'
+  secondary-background-color: '#2a2a2a'
+  card-background-color: '#2a2a2a'
+  paper-card-background-color: '#2a2a2a'
+  primary-text-color: '#e8e8e8'
+  secondary-text-color: '#c0c0c0'
+  text-primary-color: '#ffffff'
+  disabled-text-color: '#666666'
+  app-header-background-color: '#1a1a1a'
+  app-header-text-color: '#e8e8e8'
+  sidebar-background-color: '#1a1a1a'
+  sidebar-text-color: '#e8e8e8'
+  sidebar-icon-color: '#c0c0c0'
+  sidebar-selected-background-color: '#3a3a3a'
+  sidebar-selected-icon-color: '#f5f5f5'
+  sidebar-selected-text-color: '#f5f5f5'
+  state-active-color: '#e0e0e0'
+  state-inactive-color: '#666666'
+  state-icon-color: '#c0c0c0'
+  state-icon-active-color: '#f5f5f5'
+  paper-item-icon-color: '#c0c0c0'
+  paper-item-icon-active-color: '#f5f5f5'
+  divider-color: '#404040'
+  ha-card-border-color: '#606060'
+  transformers-card-font-family: "'Transformers G1', 'Arial Black', sans-serif"
+  transformers-header-font-family: "'Transformers G1', 'Arial Black', sans-serif"
+  card-mod-theme: 'Transformers Silver (G1)'
+  card-mod-view-yaml: |
+    .: |
+      hui-view {
+        background-color: var(--primary-background-color) !important;
+      }
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        border: 2px solid var(--ha-card-border-color) !important;
+        border-left: 4px solid var(--accent-color) !important;
+        background: linear-gradient(135deg, #2a2a2a 0%, #353535 50%, #2a2a2a 100%) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.38), 0 0 18px rgba(192, 192, 192, 0.15) !important;
+        color: var(--primary-text-color) !important;
+      }
+      ha-card, ha-card * {
+        font-family: var(--transformers-card-font-family) !important;
+      }
+      ha-card .card-header,
+      ha-card h1,
+      ha-card h2,
+      ha-card h3 {
+        font-family: var(--transformers-header-font-family) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.14em !important;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.25) !important;
+      }
+      ha-card ha-icon,
+      ha-card ha-state-icon,
+      ha-card state-badge {
+        color: var(--paper-item-icon-color) !important;
+      }
+
+Transformers Silver (Movie):
+  primary-color: '#c0c0c0'
+  accent-color: '#e53935'
+  primary-background-color: '#1a1a1a'
+  secondary-background-color: '#2a2a2a'
+  card-background-color: '#2a2a2a'
+  paper-card-background-color: '#2a2a2a'
+  primary-text-color: '#e8e8e8'
+  secondary-text-color: '#c0c0c0'
+  text-primary-color: '#ffffff'
+  disabled-text-color: '#666666'
+  app-header-background-color: '#1a1a1a'
+  app-header-text-color: '#e8e8e8'
+  sidebar-background-color: '#1a1a1a'
+  sidebar-text-color: '#e8e8e8'
+  sidebar-icon-color: '#c0c0c0'
+  sidebar-selected-background-color: '#3a3a3a'
+  sidebar-selected-icon-color: '#f5f5f5'
+  sidebar-selected-text-color: '#f5f5f5'
+  state-active-color: '#e0e0e0'
+  state-inactive-color: '#666666'
+  state-icon-color: '#c0c0c0'
+  state-icon-active-color: '#f5f5f5'
+  paper-item-icon-color: '#c0c0c0'
+  paper-item-icon-active-color: '#f5f5f5'
+  divider-color: '#404040'
+  ha-card-border-color: '#606060'
+  transformers-card-font-family: "'Transformers Movie', 'Arial Black', sans-serif"
+  transformers-header-font-family: "'Transformers Movie', 'Arial Black', sans-serif"
+  card-mod-theme: 'Transformers Silver (Movie)'
+  card-mod-view-yaml: |
+    .: |
+      hui-view {
+        background-color: var(--primary-background-color) !important;
+      }
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        border: 2px solid var(--ha-card-border-color) !important;
+        border-left: 4px solid var(--accent-color) !important;
+        background: linear-gradient(135deg, #2a2a2a 0%, #353535 50%, #2a2a2a 100%) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.38), 0 0 18px rgba(192, 192, 192, 0.15) !important;
+        color: var(--primary-text-color) !important;
+      }
+      ha-card, ha-card * {
+        font-family: var(--transformers-card-font-family) !important;
+      }
+      ha-card .card-header,
+      ha-card h1,
+      ha-card h2,
+      ha-card h3 {
+        font-family: var(--transformers-header-font-family) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.14em !important;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.25) !important;
+      }
+      ha-card ha-icon,
+      ha-card ha-state-icon,
+      ha-card state-badge {
+        color: var(--paper-item-icon-color) !important;
+      }
+
+Transformers Dirty Metal (G1):
+  primary-color: '#8b7355'
+  accent-color: '#d84315'
+  primary-background-color: '#1c1814'
+  secondary-background-color: '#2d2620'
+  card-background-color: '#2d2620'
+  paper-card-background-color: '#2d2620'
+  primary-text-color: '#cfc7b8'
+  secondary-text-color: '#a89888'
+  text-primary-color: '#e0d8c8'
+  disabled-text-color: '#5a5248'
+  app-header-background-color: '#1c1814'
+  app-header-text-color: '#cfc7b8'
+  sidebar-background-color: '#1c1814'
+  sidebar-text-color: '#cfc7b8'
+  sidebar-icon-color: '#a89888'
+  sidebar-selected-background-color: '#3d3530'
+  sidebar-selected-icon-color: '#d4a574'
+  sidebar-selected-text-color: '#d4a574'
+  state-active-color: '#d4a574'
+  state-inactive-color: '#5a5248'
+  state-icon-color: '#a89888'
+  state-icon-active-color: '#d4a574'
+  paper-item-icon-color: '#a89888'
+  paper-item-icon-active-color: '#d4a574'
+  divider-color: '#3d3530'
+  ha-card-border-color: '#4a4238'
+  transformers-card-font-family: "'Transformers G1', 'Arial Black', sans-serif"
+  transformers-header-font-family: "'Transformers G1', 'Arial Black', sans-serif"
+  card-mod-theme: 'Transformers Dirty Metal (G1)'
+  card-mod-view-yaml: |
+    .: |
+      hui-view {
+        background-color: var(--primary-background-color) !important;
+        background-image:
+          repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 4px),
+          repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 4px) !important;
+      }
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        border: 2px solid var(--ha-card-border-color) !important;
+        border-left: 4px solid var(--accent-color) !important;
+        background: linear-gradient(135deg, #2d2620 0%, #3a342c 30%, #2d2620 70%, #252018 100%) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.42), 0 0 18px rgba(212, 165, 116, 0.12) !important;
+        color: var(--primary-text-color) !important;
+      }
+      ha-card, ha-card * {
+        font-family: var(--transformers-card-font-family) !important;
+      }
+      ha-card .card-header,
+      ha-card h1,
+      ha-card h2,
+      ha-card h3 {
+        font-family: var(--transformers-header-font-family) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.12em !important;
+        text-shadow: 0 0 10px rgba(212, 165, 116, 0.28) !important;
+      }
+      ha-card ha-icon,
+      ha-card ha-state-icon,
+      ha-card state-badge {
+        color: var(--paper-item-icon-color) !important;
+      }
+
+Transformers Dirty Metal (Movie):
+  primary-color: '#8b7355'
+  accent-color: '#d84315'
+  primary-background-color: '#1c1814'
+  secondary-background-color: '#2d2620'
+  card-background-color: '#2d2620'
+  paper-card-background-color: '#2d2620'
+  primary-text-color: '#cfc7b8'
+  secondary-text-color: '#a89888'
+  text-primary-color: '#e0d8c8'
+  disabled-text-color: '#5a5248'
+  app-header-background-color: '#1c1814'
+  app-header-text-color: '#cfc7b8'
+  sidebar-background-color: '#1c1814'
+  sidebar-text-color: '#cfc7b8'
+  sidebar-icon-color: '#a89888'
+  sidebar-selected-background-color: '#3d3530'
+  sidebar-selected-icon-color: '#d4a574'
+  sidebar-selected-text-color: '#d4a574'
+  state-active-color: '#d4a574'
+  state-inactive-color: '#5a5248'
+  state-icon-color: '#a89888'
+  state-icon-active-color: '#d4a574'
+  paper-item-icon-color: '#a89888'
+  paper-item-icon-active-color: '#d4a574'
+  divider-color: '#3d3530'
+  ha-card-border-color: '#4a4238'
+  transformers-card-font-family: "'Transformers Movie', 'Arial Black', sans-serif"
+  transformers-header-font-family: "'Transformers Movie', 'Arial Black', sans-serif"
+  card-mod-theme: 'Transformers Dirty Metal (Movie)'
+  card-mod-view-yaml: |
+    .: |
+      hui-view {
+        background-color: var(--primary-background-color) !important;
+        background-image:
+          repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 4px),
+          repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 4px) !important;
+      }
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        border: 2px solid var(--ha-card-border-color) !important;
+        border-left: 4px solid var(--accent-color) !important;
+        background: linear-gradient(135deg, #2d2620 0%, #3a342c 30%, #2d2620 70%, #252018 100%) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.42), 0 0 18px rgba(212, 165, 116, 0.12) !important;
+        color: var(--primary-text-color) !important;
+      }
+      ha-card, ha-card * {
+        font-family: var(--transformers-card-font-family) !important;
+      }
+      ha-card .card-header,
+      ha-card h1,
+      ha-card h2,
+      ha-card h3 {
+        font-family: var(--transformers-header-font-family) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.12em !important;
+        text-shadow: 0 0 10px rgba(212, 165, 116, 0.28) !important;
+      }
+      ha-card ha-icon,
+      ha-card ha-state-icon,
+      ha-card state-badge {
+        color: var(--paper-item-icon-color) !important;
+      }

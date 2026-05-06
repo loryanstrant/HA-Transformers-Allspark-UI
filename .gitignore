@@ -1,0 +1,20 @@
+# Node
+node_modules/
+
+# Build / temp
+*.log
+*.tmp
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Local-only assets
+downloads/
+
+# Reference repos (local only)
+refs-cards/
+refs-theme/
+source-ha-transformers-cards/
+source-ha-transformers-theme/

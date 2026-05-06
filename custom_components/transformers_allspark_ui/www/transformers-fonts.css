@@ -1,0 +1,24 @@
+/* Transformers Allspark UI shared fonts */
+
+@font-face {
+  font-family: 'Transformers G1';
+  src: url('/transformers_allspark_ui_static/fonts/transformers-g1.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Transformers Movie';
+  src: url('/transformers_allspark_ui_static/fonts/transformers-movie.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --transformers-font-g1: 'Transformers G1', 'Arial Black', sans-serif;
+  --transformers-font-movie: 'Transformers Movie', 'Arial Black', sans-serif;
+  --transformers-card-font-family: var(--transformers-font-movie);
+  --transformers-header-font-family: var(--transformers-font-movie);
+}

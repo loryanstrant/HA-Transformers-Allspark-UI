@@ -1,0 +1,41 @@
+{
+  "title": "Transformers Allspark UI",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Transformers Allspark UI",
+        "description": "Install the bundled frontend resources and theme pack for Transformers Allspark UI.",
+        "data": {
+          "manage_lovelace_resources": "Manage Lovelace resources automatically",
+          "manage_themes": "Install and reload themes automatically",
+          "default_font_style": "Default card font fallback"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure Transformers Allspark UI",
+        "description": "Update how the integration manages themes, resources, and default font behavior.",
+        "data": {
+          "manage_lovelace_resources": "Manage Lovelace resources automatically",
+          "manage_themes": "Install and reload themes automatically",
+          "default_font_style": "Default card font fallback"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Configure Transformers Allspark UI",
+        "description": "Update how the integration manages themes, resources, and default font behavior.",
+        "data": {
+          "manage_lovelace_resources": "Manage Lovelace resources automatically",
+          "manage_themes": "Install and reload themes automatically",
+          "default_font_style": "Default card font fallback"
+        }
+      }
+    }
+  }
+}
