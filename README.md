@@ -1,5 +1,9 @@
 # Transformers Allspark UI
 
+<img width="256" height="256" alt="icon" src="https://github.com/user-attachments/assets/1925a8bf-44ad-4749-bb18-aeaac61c8d8c" />
+<br><br>
+
+
 Transformers Allspark UI is a HACS-ready Home Assistant custom integration that bundles:
 
 - 11 G1-themed custom cards
