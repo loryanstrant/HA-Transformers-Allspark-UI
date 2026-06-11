@@ -9,6 +9,7 @@ import './light-card.js';
 import './picture-card.js';
 import './weather-card.js';
 import './alarm-card.js';
+import './editor.js';
 
 const registerCard = (definition) => {
   window.customCards = window.customCards || [];
@@ -65,18 +66,30 @@ const registerCard = (definition) => {
     name: 'Transformers Light Card',
     description: 'Control a light with dynamic icon, state, and brightness handling.',
     preview: true,
+    getEntitySuggestion: (_hass, entityId) =>
+      typeof entityId === 'string' && entityId.startsWith('light.')
+        ? { config: { type: 'custom:transformers-light-card', entity: entityId } }
+        : null,
   },
   {
     type: 'transformers-picture-card',
     name: 'Transformers Picture Card',
     description: 'Display images or camera feeds with Transformers-inspired styling.',
     preview: true,
+    getEntitySuggestion: (_hass, entityId) =>
+      typeof entityId === 'string' && entityId.startsWith('camera.')
+        ? { config: { type: 'custom:transformers-picture-card', entity: entityId } }
+        : null,
   },
   {
     type: 'transformers-weather-card',
     name: 'Transformers Weather Card',
     description: 'Display current conditions and forecast with Home Assistant-driven weather icons.',
     preview: true,
+    getEntitySuggestion: (_hass, entityId) =>
+      typeof entityId === 'string' && entityId.startsWith('weather.')
+        ? { config: { type: 'custom:transformers-weather-card', entity: entityId } }
+        : null,
   },
   {
     type: 'transformers-alarm-card',
@@ -87,7 +100,7 @@ const registerCard = (definition) => {
 ].forEach(registerCard);
 
 console.info(
-  '%c TRANSFORMERS ALLSPARK UI %c v0.1.0 ',
+  '%c TRANSFORMERS ALLSPARK UI %c v0.2.0 ',
   'color: #e31e24; background: #000; font-weight: bold;',
   'color: #000; background: #e31e24; font-weight: bold;'
 );

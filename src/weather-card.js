@@ -29,7 +29,9 @@ class TransformersWeatherCard extends TransformersBaseCard {
         }
 
         .weather-icon ha-icon {
-          --mdc-icon-size: 3em;
+          /* Container is font-size:3em, so an em-based icon size compounds to
+             ~9x ("far too big"). Use px for a sane fixed size. */
+          --mdc-icon-size: 48px;
         }
 
         .weather-info {

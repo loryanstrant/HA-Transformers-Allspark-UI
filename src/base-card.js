@@ -457,6 +457,12 @@ export class TransformersBaseCard extends LitElement {
     };
   }
 
+  // All cards share one visual editor (transformers-card-editor), which picks
+  // its form schema from the card type. Defined in editor.js.
+  static getConfigElement() {
+    return document.createElement('transformers-card-editor');
+  }
+
   setConfig(config) {
     if (!config || typeof config !== 'object') {
       throw new Error('Invalid configuration');
