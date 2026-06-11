@@ -25,7 +25,9 @@ class TransformersLightCard extends TransformersBaseCard {
         }
 
         .light-icon ha-icon {
-          --mdc-icon-size: 3em;
+          /* The container is font-size:3em, so an em-based icon size compounds
+             to ~9x ("far too big"). Use px for a sane fixed size. */
+          --mdc-icon-size: 48px;
         }
 
         .light-icon.on {

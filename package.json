@@ -1,6 +1,6 @@
 {
   "name": "ha-transformers-allspark-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "A HACS-ready Home Assistant integration that combines Transformers themes, cards, fonts, and brand assets.",
   "main": "custom_components/transformers_allspark_ui/www/transformers-cards.js",
