@@ -9,6 +9,7 @@ import './light-card.js';
 import './picture-card.js';
 import './weather-card.js';
 import './alarm-card.js';
+import './background-card.js';
 import './editor.js';
 
 const registerCard = (definition) => {
@@ -97,10 +98,16 @@ const registerCard = (definition) => {
     description: 'Control alarm panels with dynamic state styling and keypad input.',
     preview: true,
   },
+  {
+    type: 'transformers-background-card',
+    name: 'Transformers Background Card',
+    description: 'A full-area Transformers backdrop (frame + optional title) to sit behind other cards.',
+    preview: true,
+  },
 ].forEach(registerCard);
 
 console.info(
-  '%c TRANSFORMERS ALLSPARK UI %c v0.2.0 ',
+  '%c TRANSFORMERS ALLSPARK UI %c v0.3.0 ',
   'color: #e31e24; background: #000; font-weight: bold;',
   'color: #000; background: #e31e24; font-weight: bold;'
 );

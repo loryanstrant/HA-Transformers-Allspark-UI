@@ -8,36 +8,52 @@ const bool = { boolean: {} };
 const text = { text: {} };
 const ent = (domain) => ({ entity: domain ? { domain } : {} });
 const entMulti = (domain) => ({ entity: { multiple: true, ...(domain ? { domain } : {}) } });
+const sel = (...opts) => ({ select: { mode: 'dropdown', options: opts } });
+
+// Appearance options shared by every card type (font, hide title, sizing).
+const APPEARANCE = [
+  { name: 'font_style', selector: sel('theme', 'g1', 'movie') },
+  { name: 'hide_title', selector: bool },
+  { type: 'grid', name: '', schema: [
+    { name: 'width', selector: text },
+    { name: 'height', selector: num },
+    { name: 'font_size', selector: num },
+    { name: 'icon_size', selector: num },
+  ] },
+];
+
+const withAppearance = (fields) => [...fields, ...APPEARANCE];
 
 const SCHEMAS = {
-  'transformers-status-card': [
+  'transformers-status-card': withAppearance([
     { name: 'title', selector: text },
     { name: 'entities', selector: entMulti() },
     { name: 'message', selector: text },
     { name: 'show_message', selector: bool },
-  ],
-  'transformers-sensor-card': [
+    { name: 'theme', selector: text },
+  ]),
+  'transformers-sensor-card': withAppearance([
     { name: 'entity', selector: ent('sensor') },
     { name: 'name', selector: text },
     { name: 'unit', selector: text },
     { name: 'max', selector: num },
     { name: 'show_graph', selector: bool },
-  ],
-  'transformers-button-card': [
+  ]),
+  'transformers-button-card': withAppearance([
     { name: 'title', selector: text },
     { name: 'columns', selector: num },
-  ],
-  'transformers-text-card': [
+  ]),
+  'transformers-text-card': withAppearance([
     { name: 'title', selector: text },
     { name: 'content', selector: text },
     { name: 'entity', selector: ent() },
     { name: 'state_content', selector: bool },
-    { name: 'align', selector: { select: { mode: 'dropdown', options: ['left', 'center', 'right'] } } },
-    { name: 'size', selector: { select: { mode: 'dropdown', options: ['small', 'medium', 'large'] } } },
+    { name: 'align', selector: sel('left', 'center', 'right') },
+    { name: 'size', selector: sel('small', 'medium', 'large') },
     { name: 'typing_effect', selector: bool },
     { name: 'show_prompt', selector: bool },
-  ],
-  'transformers-gauge-card': [
+  ]),
+  'transformers-gauge-card': withAppearance([
     { name: 'entity', selector: ent('sensor') },
     { name: 'name', selector: text },
     { name: 'unit', selector: text },
@@ -46,44 +62,47 @@ const SCHEMAS = {
       { name: 'max', selector: num },
       { name: 'decimals', selector: num },
     ] },
-  ],
-  'transformers-clock-card': [
+  ]),
+  'transformers-clock-card': withAppearance([
     { name: 'title', selector: text },
-    { name: 'format_', selector: { select: { mode: 'dropdown', options: ['12h', '24h'] } } },
+    { name: 'format_', selector: sel('12h', '24h') },
     { name: 'show_seconds', selector: bool },
     { name: 'show_date', selector: bool },
     { name: 'show_timezone', selector: bool },
-  ],
-  'transformers-glance-card': [
+  ]),
+  'transformers-glance-card': withAppearance([
     { name: 'title', selector: text },
     { name: 'entities', selector: entMulti() },
     { name: 'columns', selector: num },
     { name: 'show_name', selector: bool },
-  ],
-  'transformers-light-card': [
+  ]),
+  'transformers-light-card': withAppearance([
     { name: 'entity', selector: ent('light') },
     { name: 'name', selector: text },
     { name: 'icon', selector: { icon: {} } },
-  ],
-  'transformers-picture-card': [
+  ]),
+  'transformers-picture-card': withAppearance([
     { name: 'title', selector: text },
     { name: 'entity', selector: ent('camera') },
     { name: 'image', selector: text },
     { name: 'caption', selector: text },
     { name: 'show_timestamp', selector: bool },
     { name: 'camera_refresh_interval', selector: num },
-  ],
-  'transformers-weather-card': [
+  ]),
+  'transformers-weather-card': withAppearance([
     { name: 'entity', selector: ent('weather') },
     { name: 'name', selector: text },
     { name: 'show_forecast', selector: bool },
     { name: 'forecast_days', selector: num },
-  ],
-  'transformers-alarm-card': [
+  ]),
+  'transformers-alarm-card': withAppearance([
     { name: 'title', selector: text },
     { name: 'entity', selector: ent('alarm_control_panel') },
     { name: 'show_keypad', selector: bool },
-  ],
+  ]),
+  'transformers-background-card': withAppearance([
+    { name: 'title', selector: text },
+  ]),
 };
 
 const LABELS = {
@@ -102,6 +121,12 @@ const LABELS = {
   state_content: 'Show entity state',
   typing_effect: 'Typing effect',
   show_prompt: 'Show prompt',
+  font_style: 'Font',
+  hide_title: 'Hide card title',
+  width: 'Width (px or CSS, e.g. 100%)',
+  height: 'Height (px)',
+  font_size: 'Font size (px)',
+  icon_size: 'Icon size (px)',
 };
 
 class TransformersCardEditor extends HTMLElement {
