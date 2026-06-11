@@ -1,14 +1,33 @@
-import { html } from 'lit';
-import { TransformersBaseCard } from './base-card.js';
+import { html, css } from 'lit';
+import { TransformersBaseCard, baseStyles } from './base-card.js';
 
 /**
  * A full-area Transformers-styled backdrop. Renders only the card frame
- * (gradient, border, grid, glow) plus an optional title — nothing else — so it
- * can sit behind other cards. Give it a `height` (and/or `width`) to fill the
- * area, then place transparent-background cards over the top with a layout card
- * (e.g. custom:layout-card / stack-in-card / card_mod positioning).
+ * (gradient, border, grid, glow) plus an optional title header — no body
+ * content — and fills the viewport height by default, so it can sit behind
+ * other cards. Override the height with the `height` option; place transparent
+ * cards over the top with a layout card (custom:layout-card / stack-in-card /
+ * card_mod positioning).
  */
 class TransformersBackgroundCard extends TransformersBaseCard {
+  static get styles() {
+    return [
+      baseStyles,
+      css`
+        :host {
+          display: block;
+        }
+        /* Fill the whole page by default; override with the height option. */
+        .card {
+          min-height: var(--tfx-card-height, 100vh);
+        }
+        .card-content {
+          min-height: inherit;
+        }
+      `,
+    ];
+  }
+
   render() {
     if (!this.config) {
       return html``;
@@ -31,14 +50,15 @@ class TransformersBackgroundCard extends TransformersBaseCard {
         return Math.max(1, Math.round(px / 50));
       }
     }
-    return 8;
+    return 12; // full-page default
   }
 
   static getStubConfig() {
+    // No height -> fills the viewport (full-page backdrop). Add a height to
+    // make it a fixed size instead.
     return {
       type: 'custom:transformers-background-card',
       title: '',
-      height: 400,
       font_style: 'theme',
     };
   }
