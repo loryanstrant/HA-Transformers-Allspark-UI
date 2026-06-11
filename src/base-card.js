@@ -217,6 +217,8 @@ export const baseStyles = css`
     --transformers-resolved-header-font: var(--transformers-theme-header-font);
     --transformers-grid-opacity: 0.15;
     display: block;
+    /* Optional per-card sizing (set from config via updated()) */
+    width: var(--tfx-card-width, auto);
   }
 
   .card {
@@ -229,6 +231,10 @@ export const baseStyles = css`
       inset 0 0 30px rgba(227, 30, 36, 0.1),
       inset 4px 0 8px rgba(30, 58, 138, 0.3);
     padding: 20px;
+    /* Optional per-card sizing (set from config via updated()) */
+    min-height: var(--tfx-card-height, auto);
+    font-size: var(--tfx-card-font-size, 1em);
+    box-sizing: border-box;
     position: relative;
     overflow: hidden;
     clip-path: polygon(
@@ -254,6 +260,11 @@ export const baseStyles = css`
   .card.font-theme {
     --transformers-resolved-font-family: var(--transformers-theme-font-family);
     --transformers-resolved-header-font: var(--transformers-theme-header-font);
+  }
+
+  /* hide_title: hide the card header across every card type */
+  .card.hide-title .card-header {
+    display: none;
   }
 
   .card::before {
@@ -498,8 +509,35 @@ export class TransformersBaseCard extends LitElement {
   }
 
   _cardClasses(extraClasses = []) {
-    const classes = ['card', `font-${this._getFontStyle()}`, ...extraClasses.filter(Boolean)];
-    return classes.join(' ');
+    const classes = [
+      'card',
+      `font-${this._getFontStyle()}`,
+      this.config?.hide_title ? 'hide-title' : '',
+      ...extraClasses.filter(Boolean),
+    ];
+    return classes.filter(Boolean).join(' ');
+  }
+
+  // Apply optional per-card sizing (height/width/font_size/icon_size) from
+  // config as CSS custom properties on the host. Bare numbers become px.
+  // baseStyles consume these; icons fall back to their own default when unset.
+  updated(changedProps) {
+    super.updated(changedProps);
+    const c = this.config || {};
+    const toCss = (v) =>
+      v === undefined || v === null || v === ''
+        ? null
+        : /^-?\d+(\.\d+)?$/.test(String(v).trim())
+          ? `${v}px`
+          : String(v);
+    const set = (prop, val) =>
+      val == null ? this.style.removeProperty(prop) : this.style.setProperty(prop, val);
+    set('--tfx-card-width', toCss(c.width));
+    set('--tfx-card-height', toCss(c.height));
+    set('--tfx-card-font-size', toCss(c.font_size));
+    const icon = toCss(c.icon_size);
+    set('--tfx-icon-size', icon);
+    set('--mdc-icon-size', icon);
   }
 
   _getEntityName(entity, fallbackName = '') {

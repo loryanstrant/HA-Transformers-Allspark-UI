@@ -1,7 +1,22 @@
 import { html, css } from 'lit';
 import { TransformersBaseCard, baseStyles, isAvailableEntity, pickStubEntity } from './base-card.js';
 
+const COLOR_MODES = ['rgb', 'rgbw', 'rgbww', 'hs', 'xy'];
+
 class TransformersLightCard extends TransformersBaseCard {
+  static get properties() {
+    return {
+      hass: { type: Object },
+      config: { type: Object },
+      _expanded: { state: true },
+    };
+  }
+
+  constructor() {
+    super();
+    this._expanded = false;
+  }
+
   static get styles() {
     return [
       baseStyles,
@@ -25,9 +40,8 @@ class TransformersLightCard extends TransformersBaseCard {
         }
 
         .light-icon ha-icon {
-          /* The container is font-size:3em, so an em-based icon size compounds
-             to ~9x ("far too big"). Use px for a sane fixed size. */
-          --mdc-icon-size: 48px;
+          /* Fixed px (em would compound on the 3em container); icon_size wins. */
+          --mdc-icon-size: var(--tfx-icon-size, 48px);
         }
 
         .light-icon.on {
@@ -65,11 +79,28 @@ class TransformersLightCard extends TransformersBaseCard {
           background: linear-gradient(135deg, var(--transformers-border-color) 0%, var(--transformers-secondary-color) 100%);
         }
 
-        .brightness-control {
-          margin-top: 16px;
+        .expand-toggle {
+          width: 100%;
+          margin-top: 12px;
+          padding: 8px;
+          background: transparent;
+          border: 1px solid var(--transformers-border-color);
+          color: var(--transformers-text-color);
+          font-family: var(--transformers-resolved-font-family);
+          font-size: 0.8em;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          cursor: pointer;
         }
 
-        .brightness-label {
+        .controls {
+          margin-top: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .control-label {
           font-size: 0.85em;
           text-transform: uppercase;
           letter-spacing: 1px;
@@ -78,7 +109,7 @@ class TransformersLightCard extends TransformersBaseCard {
           justify-content: space-between;
         }
 
-        .brightness-slider {
+        .tfx-slider {
           width: 100%;
           height: 8px;
           -webkit-appearance: none;
@@ -88,7 +119,7 @@ class TransformersLightCard extends TransformersBaseCard {
           border: 1px solid var(--transformers-border-color);
         }
 
-        .brightness-slider::-webkit-slider-thumb {
+        .tfx-slider::-webkit-slider-thumb {
           -webkit-appearance: none;
           appearance: none;
           width: 20px;
@@ -97,6 +128,19 @@ class TransformersLightCard extends TransformersBaseCard {
           cursor: pointer;
           clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
           box-shadow: 0 0 8px var(--transformers-glow-color);
+        }
+
+        .temp-slider {
+          background: linear-gradient(90deg, #ff8b29 0%, #ffd9a0 40%, #ffffff 60%, #cfe0ff 100%);
+        }
+
+        .color-swatch {
+          width: 100%;
+          height: 40px;
+          border: 1px solid var(--transformers-border-color);
+          background: transparent;
+          cursor: pointer;
+          padding: 0;
         }
       `,
     ];
@@ -119,10 +163,21 @@ class TransformersLightCard extends TransformersBaseCard {
       `;
     }
 
+    const attrs = entity.attributes || {};
     const isOn = String(entity.state).toLowerCase() === 'on';
-    const brightness = entity.attributes.brightness || 0;
-    const brightnessPercent = Math.round((brightness / 255) * 100);
-    const supportsBrightness = entity.attributes.brightness !== undefined || ((entity.attributes.supported_features || 0) & 1) !== 0;
+    const modes = attrs.supported_color_modes || [];
+    const brightnessPercent = Math.round(((attrs.brightness || 0) / 255) * 100);
+    const supportsBrightness =
+      attrs.brightness !== undefined ||
+      modes.some((m) => m !== 'onoff') ||
+      ((attrs.supported_features || 0) & 1) !== 0;
+    const supportsColorTemp = modes.includes('color_temp');
+    const supportsColor = modes.some((m) => COLOR_MODES.includes(m));
+    const minK = attrs.min_color_temp_kelvin || 2000;
+    const maxK = attrs.max_color_temp_kelvin || 6535;
+    const curK = attrs.color_temp_kelvin || maxK;
+    const hex = this._rgbToHex(attrs.rgb_color || [255, 255, 255]);
+    const hasControls = supportsBrightness || supportsColorTemp || supportsColor;
     const icon = this._resolveIcon(entity, this.config.icon);
     const name = this._getEntityName(entity, this.config.name);
 
@@ -136,25 +191,68 @@ class TransformersLightCard extends TransformersBaseCard {
               <div class="light-name">${name}</div>
               <div class="light-state">${this._getEntityStateText(entity, { includeUnit: false })}</div>
             </div>
-            <button class="toggle-button ${isOn ? 'on' : ''}" @click=${() => this._toggleLight()}>
+            <button type="button" class="toggle-button ${isOn ? 'on' : ''}" @click=${() => this._toggleLight()}>
               ${isOn ? 'TURN OFF' : 'TURN ON'}
             </button>
-            ${isOn && supportsBrightness
+            ${isOn && hasControls
               ? html`
-                  <div class="brightness-control">
-                    <div class="brightness-label">
-                      <span>BRIGHTNESS</span>
-                      <span>${brightnessPercent}%</span>
-                    </div>
-                    <input
-                      type="range"
-                      class="brightness-slider"
-                      min="0"
-                      max="100"
-                      .value=${String(brightnessPercent)}
-                      @input=${(event) => this._setBrightness(event.target.value)}
-                    />
-                  </div>
+                  <button type="button" class="expand-toggle" @click=${() => this._toggleExpand()}>
+                    ${this._expanded ? '▲ Hide controls' : '▼ Controls'}
+                  </button>
+                  ${this._expanded
+                    ? html`
+                        <div class="controls">
+                          ${supportsBrightness
+                            ? html`
+                                <div>
+                                  <div class="control-label">
+                                    <span>Brightness</span><span>${brightnessPercent}%</span>
+                                  </div>
+                                  <input
+                                    type="range"
+                                    class="tfx-slider"
+                                    min="1"
+                                    max="100"
+                                    .value=${String(brightnessPercent)}
+                                    @input=${(e) => this._setBrightness(e.target.value)}
+                                  />
+                                </div>
+                              `
+                            : ''}
+                          ${supportsColorTemp
+                            ? html`
+                                <div>
+                                  <div class="control-label">
+                                    <span>Colour temperature</span><span>${curK}K</span>
+                                  </div>
+                                  <input
+                                    type="range"
+                                    class="tfx-slider temp-slider"
+                                    min=${minK}
+                                    max=${maxK}
+                                    step="50"
+                                    .value=${String(curK)}
+                                    @input=${(e) => this._setColorTemp(e.target.value)}
+                                  />
+                                </div>
+                              `
+                            : ''}
+                          ${supportsColor
+                            ? html`
+                                <div>
+                                  <div class="control-label"><span>Colour</span></div>
+                                  <input
+                                    type="color"
+                                    class="color-swatch"
+                                    .value=${hex}
+                                    @input=${(e) => this._setRgb(e.target.value)}
+                                  />
+                                </div>
+                              `
+                            : ''}
+                        </div>
+                      `
+                    : ''}
                 `
               : ''}
           </div>
@@ -167,12 +265,40 @@ class TransformersLightCard extends TransformersBaseCard {
     this._callService('light.toggle', { entity_id: this.config.entity });
   }
 
+  _toggleExpand() {
+    this._expanded = !this._expanded;
+    this.requestUpdate();
+  }
+
   _setBrightness(value) {
-    const brightness = Math.round((Number(value) / 100) * 255);
     this._callService('light.turn_on', {
       entity_id: this.config.entity,
-      brightness,
+      brightness_pct: Number(value),
     });
+  }
+
+  _setColorTemp(value) {
+    this._callService('light.turn_on', {
+      entity_id: this.config.entity,
+      color_temp_kelvin: Number(value),
+    });
+  }
+
+  _setRgb(hex) {
+    this._callService('light.turn_on', {
+      entity_id: this.config.entity,
+      rgb_color: this._hexToRgb(hex),
+    });
+  }
+
+  _rgbToHex(rgb) {
+    const h = (n) => Math.max(0, Math.min(255, Number(n) || 0)).toString(16).padStart(2, '0');
+    return `#${h(rgb[0])}${h(rgb[1])}${h(rgb[2])}`;
+  }
+
+  _hexToRgb(hex) {
+    const m = String(hex).replace('#', '');
+    return [parseInt(m.slice(0, 2), 16), parseInt(m.slice(2, 4), 16), parseInt(m.slice(4, 6), 16)];
   }
 
   static getStubConfig(hass, entities = [], entitiesFallback = []) {
