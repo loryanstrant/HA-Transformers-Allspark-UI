@@ -107,7 +107,7 @@ const registerCard = (definition) => {
 ].forEach(registerCard);
 
 console.info(
-  '%c TRANSFORMERS ALLSPARK UI %c v0.3.1 ',
+  '%c TRANSFORMERS ALLSPARK UI %c v0.4.0 ',
   'color: #e31e24; background: #000; font-weight: bold;',
   'color: #000; background: #e31e24; font-weight: bold;'
 );

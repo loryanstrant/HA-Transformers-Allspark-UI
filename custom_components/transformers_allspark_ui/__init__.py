@@ -16,6 +16,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.event import async_call_later
 
 from .const import (
+    BACKGROUND_FILENAME,
     CARD_BUNDLE_FILENAME,
     CONF_MANAGE_LOVELACE_RESOURCES,
     CONF_MANAGE_THEMES,
@@ -96,6 +97,8 @@ class AllsparkUIManager:
         await self._async_ensure_lovelace_resources()
         _LOGGER.debug("%s installing themes", DOMAIN)
         await self._async_install_themes()
+        _LOGGER.debug("%s installing background image", DOMAIN)
+        await self._async_install_background()
         _LOGGER.debug("%s setup finished", DOMAIN)
 
     @property
@@ -227,6 +230,34 @@ class AllsparkUIManager:
             _LOGGER.debug("%s requested frontend.reload_themes", DOMAIN)
         except Exception as err:  # pragma: no cover - defensive logging only
             _LOGGER.warning("Failed to reload themes after updating %s: %s", destination, err)
+
+    async def _async_install_background(self) -> None:
+        """Copy the bundled Transformers background image into HA's media folder
+        so it can be picked as a view background. It is also served via the
+        static path at ``{STATIC_URL_BASE}/backgrounds/{BACKGROUND_FILENAME}``."""
+        source = Path(__file__).parent / "www" / "backgrounds" / BACKGROUND_FILENAME
+        if not await self.hass.async_add_executor_job(source.is_file):
+            return
+
+        media_dirs = getattr(self.hass.config, "media_dirs", None) or {}
+        if not media_dirs:
+            _LOGGER.debug("%s no media dir configured; background served via static path only", DOMAIN)
+            return
+
+        destination_dir = Path(next(iter(media_dirs.values()))) / DOMAIN
+        destination = destination_dir / BACKGROUND_FILENAME
+        try:
+            await self.hass.async_add_executor_job(
+                partial(destination_dir.mkdir, parents=True, exist_ok=True)
+            )
+            source_bytes = await self.hass.async_add_executor_job(source.read_bytes)
+            if await self.hass.async_add_executor_job(destination.exists):
+                if await self.hass.async_add_executor_job(destination.read_bytes) == source_bytes:
+                    return
+            await self.hass.async_add_executor_job(destination.write_bytes, source_bytes)
+            _LOGGER.info("%s installed background image to %s", DOMAIN, destination)
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.warning("%s could not install background to media (%s)", DOMAIN, err)
 
     async def _async_sync_lovelace_resource_store(self) -> None:
         """Synchronize Lovelace resources directly in the storage file."""

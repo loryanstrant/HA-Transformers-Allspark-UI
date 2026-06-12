@@ -19,6 +19,8 @@ CARD_BUNDLE_FILENAME: Final = "transformers-cards.js"
 FONT_STYLESHEET_FILENAME: Final = "transformers-fonts.css"
 THEME_SOURCE_FILENAME: Final = "transformers-themes.yaml"
 THEME_INSTALL_FILENAME: Final = "transformers-allspark-ui.yaml"
+BACKGROUND_FILENAME: Final = "transformers-background.png"
+BACKGROUND_STATIC_URL: Final = f"{STATIC_URL_BASE}/backgrounds/{BACKGROUND_FILENAME}"
 
 RESOURCE_VERSION_QUERY: Final = f"v={INTEGRATION_VERSION}"
 RESOURCE_TYPE_MODULE: Final = "module"
