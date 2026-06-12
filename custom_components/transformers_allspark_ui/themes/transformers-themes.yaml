@@ -65,6 +65,76 @@ Transformers Dark (G1):
         color: var(--paper-item-icon-color) !important;
       }
 
+# G1 styling with the bundled Transformers backdrop painted across the whole
+# view (the only theme that does this). Cards sit on top; give individual cards
+# a transparent background via card_mod if you want the backdrop to show through.
+Transformers (G1 - TELETRAAN-I):
+  primary-color: '#0d47a1'
+  accent-color: '#ff1744'
+  primary-background-color: '#0a0e14'
+  secondary-background-color: '#151b24'
+  card-background-color: '#151b24'
+  paper-card-background-color: '#151b24'
+  primary-text-color: '#e0e6ed'
+  secondary-text-color: '#b0c4de'
+  text-primary-color: '#ffffff'
+  disabled-text-color: '#546e7a'
+  app-header-background-color: '#0a0e14'
+  app-header-text-color: '#e0e6ed'
+  sidebar-background-color: '#0a0e14'
+  sidebar-text-color: '#e0e6ed'
+  sidebar-icon-color: '#64b5f6'
+  sidebar-selected-background-color: '#1e2936'
+  sidebar-selected-icon-color: '#2196f3'
+  sidebar-selected-text-color: '#2196f3'
+  state-active-color: '#2196f3'
+  state-inactive-color: '#546e7a'
+  state-icon-color: '#64b5f6'
+  state-icon-active-color: '#2196f3'
+  paper-item-icon-color: '#64b5f6'
+  paper-item-icon-active-color: '#2196f3'
+  divider-color: '#263238'
+  ha-card-border-color: '#1e3a5f'
+  transformers-card-font-family: "'Transformers G1', 'Arial Black', sans-serif"
+  transformers-header-font-family: "'Transformers G1', 'Arial Black', sans-serif"
+  card-mod-theme: 'Transformers (G1 - TELETRAAN-I)'
+  card-mod-view-yaml: |
+    .: |
+      hui-view {
+        background-color: var(--primary-background-color) !important;
+        background-image: url('/transformers_allspark_ui_static/backgrounds/transformers-background.png') !important;
+        background-size: 100% 100% !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-attachment: fixed !important;
+      }
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        border: 2px solid var(--ha-card-border-color) !important;
+        border-left: 4px solid var(--primary-color) !important;
+        background: linear-gradient(135deg, var(--card-background-color) 0%, var(--secondary-background-color) 100%) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28), 0 0 18px rgba(33, 150, 243, 0.15) !important;
+        color: var(--primary-text-color) !important;
+      }
+      ha-card, ha-card * {
+        font-family: var(--transformers-card-font-family) !important;
+      }
+      ha-card .card-header,
+      ha-card h1,
+      ha-card h2,
+      ha-card h3 {
+        font-family: var(--transformers-header-font-family) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.12em !important;
+        text-shadow: 0 0 10px rgba(33, 150, 243, 0.35) !important;
+      }
+      ha-card ha-icon,
+      ha-card ha-state-icon,
+      ha-card state-badge {
+        color: var(--paper-item-icon-color) !important;
+      }
+
 Transformers Dark (Movie):
   primary-color: '#0d47a1'
   accent-color: '#ff1744'
