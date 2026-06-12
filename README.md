@@ -8,7 +8,8 @@ Transformers Allspark UI is a HACS-ready Home Assistant custom integration that 
 
 - 11 G1-themed custom cards
 - 2 Fonts (G1 & Movie)
-- 8 Theme styles
+- 9 Theme styles (including the `TELETRAAN-I` backdrop theme)
+- A bundled full-page Transformers backdrop image
 
 It is designed as unified integration package, so that you can simply install one thing and get cards, themes, and fonts working together.
 
@@ -19,6 +20,10 @@ This supercedes both of them.
 
 ## Features
 
+- **Visual editor for every card** — configure each card from a form, exposing its full set of options (no YAML required)
+- **Appearance controls on every card** — hide the card title, and set width, height, font size and icon size
+- **Light card with Mushroom-style controls** — tap to reveal brightness, colour‑temperature and RGB colour, shown based on what the light supports
+- **Full-page backdrop** — a bundled Transformers backdrop image and a `TELETRAAN-I` theme that paints it (with a red frame) across the whole view
 - Global font setting and individual card override
 - Supports native cards
 - Allows entity icons to be used
@@ -53,6 +58,16 @@ Supported font styles on the included cards:
 
 The bundled stylesheet provides shared font-family names so fonts can also be referenced by native cards or other custom cards.
 
+## Card options
+
+Every card has a **visual editor** (Add/Edit card → the form) that exposes its full set of options — no YAML required. On top of each card's own options, all cards share these appearance controls:
+
+- **Font** — `theme` / `g1` / `movie`
+- **Hide card title** — drop the card header
+- **Width / Height / Font size / Icon size** — size the card and its text/icons (a bare number is treated as pixels; `width` also accepts CSS values such as `100%`)
+
+The **light card** additionally has an expandable **Controls** section with **brightness**, **colour‑temperature** and **RGB colour** sliders, shown according to the light's `supported_color_modes`.
+
 ## Themes included
 
 - `Transformers Dark (G1)`
@@ -63,6 +78,7 @@ The bundled stylesheet provides shared font-family names so fonts can also be re
 - `Transformers Silver (Movie)`
 - `Transformers Dirty Metal (G1)`
 - `Transformers Dirty Metal (Movie)`
+- `Transformers (G1 - TELETRAAN-I)` — G1 styling that paints the bundled backdrop image across the whole view, framed in red (see [Full-page backdrop](#full-page-backdrop))
 
 ### Theme Examples
 #### Dark theme (movie font), but showing a card using the G1 font override
@@ -91,7 +107,16 @@ All cards are G1 styled, regardless of theme choice. You can override the font f
 - `transformers-weather-card`
 - `transformers-alarm-card`
 
-All cards are registered for the card picker and support preview tiles in the Community cards list.
+All cards are registered for the card picker and support preview tiles in the Community cards list. The light, picture and weather cards also appear as **entity suggestions** when you add a card for a matching entity.
+
+## Full-page backdrop
+
+To get a full-page Transformers backdrop, set a view's theme to **`Transformers (G1 - TELETRAAN-I)`** — the bundled backdrop image is then painted across the whole view, framed in red, with your cards on top. No extra setup.
+
+The backdrop image is also installed standalone for your own use:
+
+- In the media browser: `/media/transformers_allspark_ui/transformers-background.png`
+- Direct URL: `/transformers_allspark_ui_static/backgrounds/transformers-background.png`
 
 ### Card Examples
 <img width="1607" height="740" alt="image" src="https://github.com/user-attachments/assets/2ea247f4-35f6-4eb9-a600-dfd889a1a18f" />

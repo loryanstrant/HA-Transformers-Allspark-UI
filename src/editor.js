@@ -100,9 +100,6 @@ const SCHEMAS = {
     { name: 'entity', selector: ent('alarm_control_panel') },
     { name: 'show_keypad', selector: bool },
   ]),
-  'transformers-background-card': withAppearance([
-    { name: 'title', selector: text },
-  ]),
 };
 
 const LABELS = {
