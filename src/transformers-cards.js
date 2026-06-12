@@ -9,7 +9,6 @@ import './light-card.js';
 import './picture-card.js';
 import './weather-card.js';
 import './alarm-card.js';
-import './background-card.js';
 import './editor.js';
 
 const registerCard = (definition) => {
@@ -96,12 +95,6 @@ const registerCard = (definition) => {
     type: 'transformers-alarm-card',
     name: 'Transformers Alarm Card',
     description: 'Control alarm panels with dynamic state styling and keypad input.',
-    preview: true,
-  },
-  {
-    type: 'transformers-background-card',
-    name: 'Transformers Background Card',
-    description: 'A full-area Transformers backdrop (frame + optional title) to sit behind other cards.',
     preview: true,
   },
 ].forEach(registerCard);
