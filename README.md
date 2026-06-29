@@ -1,8 +1,17 @@
 # Transformers Allspark UI
 
+[![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5?style=flat-square)](https://github.com/hacs/integration)
+[![Release](https://img.shields.io/github/v/release/loryanstrant/HA-Transformers-Allspark-UI?style=flat-square)](https://github.com/loryanstrant/HA-Transformers-Allspark-UI/releases)
+[![Release date](https://img.shields.io/github/release-date/loryanstrant/HA-Transformers-Allspark-UI?style=flat-square)](https://github.com/loryanstrant/HA-Transformers-Allspark-UI/releases)
+[![Downloads](https://img.shields.io/github/downloads/loryanstrant/HA-Transformers-Allspark-UI/total?style=flat-square)](https://github.com/loryanstrant/HA-Transformers-Allspark-UI/releases)
+[![License](https://img.shields.io/github/license/loryanstrant/HA-Transformers-Allspark-UI?style=flat-square)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/loryanstrant/HA-Transformers-Allspark-UI?style=flat-square)](https://github.com/loryanstrant/HA-Transformers-Allspark-UI/commits)
+[![Stars](https://img.shields.io/github/stars/loryanstrant/HA-Transformers-Allspark-UI?style=flat-square)](https://github.com/loryanstrant/HA-Transformers-Allspark-UI/stargazers)
+
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=loryanstrant&repository=HA-Transformers-Allspark-UI&category=integration)
+
 <img width="256" height="256" alt="icon" src="https://github.com/user-attachments/assets/1925a8bf-44ad-4749-bb18-aeaac61c8d8c" />
 <br><br>
-
 
 Transformers Allspark UI is a HACS-ready Home Assistant custom integration that bundles:
 
@@ -17,7 +26,6 @@ I previously had a separate custom components for the [theme](https://github.com
 
 This supercedes both of them.
 
-
 ## Features
 
 - **Visual editor for every card** — configure each card from a form, exposing its full set of options (no YAML required)
@@ -28,7 +36,6 @@ This supercedes both of them.
 - Supports native cards
 - Allows entity icons to be used
 - Reflects entity state
-
 
 ## Requirements
 
@@ -46,7 +53,6 @@ This supercedes both of them.
 4. Go to **Settings → Devices & Services → Add Integration**.
 5. Add **Transformers Allspark UI** and complete the config flow.
 6. Restart Home Assistant again.
-
 
 ## Font behavior
 
@@ -129,5 +135,3 @@ More card examples can be found in on the [card examples](CARD-EXAMPLES.md) page
 
 # Development Approach
 <img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/9fcad42c-9f94-4684-ac45-d6ca029d9ec7" />
-
-
