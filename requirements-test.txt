@@ -1,0 +1,3 @@
+pytest-homeassistant-custom-component
+# frontend is a manifest dependency, so the entry cannot set up without it
+home-assistant-frontend

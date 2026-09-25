@@ -13,6 +13,8 @@ from uuid import uuid4
 from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.exceptions import ConfigEntryError
+from homeassistant.helpers import issue_registry as ir
 from homeassistant.helpers.event import async_call_later
 
 from .const import (
@@ -25,6 +27,7 @@ from .const import (
     FONT_STYLESHEET_FILENAME,
     INTEGRATION_VERSION,
     LEGACY_RESOURCE_PATHS,
+    MIGRATION_ISSUE_PREFIX,
     RESOURCE_DEFINITIONS,
     STATIC_DIRECTORY_NAME,
     STATIC_URL_BASE,
@@ -66,18 +69,53 @@ async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
 
 async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Migrate old entry versions."""
+    _LOGGER.debug(
+        "Migrating %s configuration from version %s.%s",
+        DOMAIN,
+        entry.version,
+        entry.minor_version,
+    )
+
     if entry.version > 1:
-        _LOGGER.error(
-            "Cannot migrate %s config entry from future version %s.%s",
+        # The entry was written by a newer release of this integration and this
+        # release has no idea how to read it. Nothing retries its way out of that,
+        # so raise a non-recoverable error — but leave the user a repair they can
+        # click once they have reinstalled the newer version, instead of making
+        # them restart Home Assistant to get the migration attempted again.
+        placeholders = {
+            "title": entry.title,
+            "entry_version": f"{entry.version}.{entry.minor_version}",
+            "integration_version": INTEGRATION_VERSION,
+        }
+        ir.async_create_issue(
+            hass,
             DOMAIN,
-            entry.version,
-            entry.minor_version,
+            f"{MIGRATION_ISSUE_PREFIX}{entry.entry_id}",
+            is_fixable=True,
+            is_persistent=False,
+            severity=ir.IssueSeverity.ERROR,
+            translation_key="migrate_unsupported_version",
+            translation_placeholders=placeholders,
+            data={"entry_id": entry.entry_id},
         )
-        return False
+        raise ConfigEntryError(
+            translation_domain=DOMAIN,
+            translation_key="migrate_unsupported_version",
+            translation_placeholders=placeholders,
+        )
 
     if entry.minor_version < 1:
         hass.config_entries.async_update_entry(entry, minor_version=1)
 
+    # A previous attempt may have left a repair standing; this one succeeded.
+    ir.async_delete_issue(hass, DOMAIN, f"{MIGRATION_ISSUE_PREFIX}{entry.entry_id}")
+
+    _LOGGER.debug(
+        "Migration of %s to configuration version %s.%s successful",
+        DOMAIN,
+        entry.version,
+        entry.minor_version,
+    )
     return True
 
 
