@@ -52,6 +52,10 @@ LEGACY_RESOURCE_PATHS: Final = (
     "/transformers_ui_static/transformers-cards.js",
 )
 
+# Repair issue raised when a config entry cannot be migrated. One issue per entry,
+# so the repair flow knows which entry to retry.
+MIGRATION_ISSUE_PREFIX: Final = "migrate_unsupported_version_"
+
 CONF_DEFAULT_FONT_STYLE: Final = "default_font_style"
 CONF_MANAGE_LOVELACE_RESOURCES: Final = "manage_lovelace_resources"
 CONF_MANAGE_THEMES: Final = "manage_themes"

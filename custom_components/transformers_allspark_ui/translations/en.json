@@ -25,6 +25,28 @@
       "already_configured": "Transformers Allspark UI is already configured."
     }
   },
+  "issues": {
+    "migrate_unsupported_version": {
+      "title": "Transformers Allspark UI could not be upgraded",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "Transformers Allspark UI could not be upgraded",
+            "description": "\"{title}\" was set up by a newer release of Transformers Allspark UI (configuration version {entry_version}), and the installed release ({integration_version}) cannot read it.\n\nUpdate Transformers Allspark UI to the latest version in HACS, then submit this repair to try again. There is no need to restart Home Assistant."
+          },
+          "confirm_restart": {
+            "title": "Transformers Allspark UI could not be upgraded",
+            "description": "\"{title}\" was set up by a newer release of Transformers Allspark UI (configuration version {entry_version}), and the installed release ({integration_version}) cannot read it.\n\nUpdate Transformers Allspark UI to the latest version in HACS, then restart Home Assistant. Submit this repair to dismiss it."
+          }
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "migrate_unsupported_version": {
+      "message": "\"{title}\" was set up by a newer release of Transformers Allspark UI (configuration version {entry_version}); the installed release ({integration_version}) cannot read it. Update the integration and submit the repair to try again."
+    }
+  },
   "options": {
     "step": {
       "init": {
